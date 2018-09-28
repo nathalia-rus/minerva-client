@@ -5,7 +5,6 @@ import '../components_sass/Menu.sass';
 import '../components_sass/Home.sass';
 import openBook from '../assets/open-book.svg';
 
-
 class Home extends Component {
 
   render() {
