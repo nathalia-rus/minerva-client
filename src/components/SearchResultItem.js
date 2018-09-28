@@ -12,8 +12,9 @@ class SearchResultItem extends Component {
 
   // Fetching single book from Search Bar
   itemFetch = (isbn) => {
-    const BASE_URL= 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
-    const apiKey = 'AIzaSyAPODoh7pbgRTLTAWlaQkFBbqbTadJsz1U'
+    const BASE_URL = 'https://www.goodreads.com/book/title.FORMAT'
+   // const BASE_URL= 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
+    const apiKey = 'eCuCTJhM3hFcUN5sdlYA6g'
     const isbnNum = this.props.industryIdentifiers[1].identifier
     fetch(BASE_URL + isbnNum + '&key=' + apiKey)
       .then(results => results.json())

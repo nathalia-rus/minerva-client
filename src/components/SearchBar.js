@@ -9,9 +9,12 @@ import MenuContainer from './MenuContainer';
 import { onSearch } from '../redux/actions';
 import history from '../history';
 
+// GOODREADS API INFO URL : https://www.goodreads.com/api/index#book.title
+
 class SearchBar extends Component {
-  API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
-  API_KEY = 'AIzaSyAPODoh7pbgRTLTAWlaQkFBbqbTadJsz1U'
+  API_URL = 'https://www.goodreads.com/book/title.FORMAT'
+ // API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
+  API_KEY = 'eCuCTJhM3hFcUN5sdlYA6g'
 
   state = {
     text: ''

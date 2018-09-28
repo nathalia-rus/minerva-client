@@ -9,7 +9,6 @@ import '../components_sass/Home.sass';
 import openBook from '../assets/open-book.svg';
 import pileBooks from '../assets/pile-books.svg';
 
-
 class Home extends Component {
   loginGoogle = ({ profileObj }) => {
     fetch('http://localhost:3001/login/google', {

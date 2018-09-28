@@ -16,9 +16,14 @@ class ScannerDashboard extends Component {
 
   // Receives isbn and sends to API.
   // Scanner — we are sending it in the props.
+
+  // GOODREADS API INFO URL : https://www.goodreads.com/api/index#book.show_by_isbn
+
+
   executeFetch = (isbn) => {
-    const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
-    const apiKey = 'AIzaSyAPODoh7pbgRTLTAWlaQkFBbqbTadJsz1U'
+    const BASE_URL = 'https://www.goodreads.com/book/isbn/ISBN?format=FORMAT' 
+   // const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
+    const apiKey = 'eCuCTJhM3hFcUN5sdlYA6g'
     fetch(BASE_URL + isbn + '&key=' + apiKey)
       .then(results => results.json())
       .then(results => {
