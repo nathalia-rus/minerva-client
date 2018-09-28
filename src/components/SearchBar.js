@@ -9,12 +9,17 @@ import MenuContainer from './MenuContainer';
 import { onSearch } from '../redux/actions';
 import history from '../history';
 
+const https = require('https');
+const goodReadsJSONResponse = require('../API/GR_JSON_response');
+
+
 // GOODREADS API INFO URL : https://www.goodreads.com/api/index#book.title
 
 class SearchBar extends Component {
-  API_URL = 'https://www.goodreads.com/book/title.FORMAT'
+ 
  // API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
-  API_KEY = 'eCuCTJhM3hFcUN5sdlYA6g'
+  API_key = 'eCuCTJhM3hFcUN5sdlYA6g'
+  title = 'narnia'
 
   state = {
     text: ''
@@ -22,19 +27,37 @@ class SearchBar extends Component {
 
   performSearch = () => {
     if (this.state.text.length) {
-      fetch(`${this.API_URL}${this.state.text.replace(' ', '+')}&maxResults=40&key=${this.API_KEY}`)
-        .then(res => res.json())
-        .then(res => this.props.saveResults(res.items))
-    } else {
-      this.props.saveResults([])
+  // const API = `${this.BASE_URL}?key=${this.API_key}&title=${this.state.text.replace(' ', '+')}`;
+      const API = `https://www.goodreads.com/book/title.xml?key=${this.API_key}&title=${this.title}`; 
+      https.get(API, (res) => {
+        res.setEncoding('utf8');
+        let rawData = '';
+        res.on('data', (chunk) => rawData += chunk)
+        res.on('end', () => {
+          const response = goodReadsJSONResponse.convertToJson(rawData);
+          // console.log(response.book.title, response.book.average_rating, response.book.ratings_count);
+          console.log(response.title);
+          return this.props.saveResults[response.title]
+        });
+      }).on('error', (e) => {
+        console.log(`Got error: ${e.message}`);
+      })
     }
   }
+
+
+  //     .then(res => this.props.saveResults(res.items))
+  //   } else {
+  //     this.props.saveResults([])
+  //   }
+  // }
 
   debounce = (callback, str) => {
     this.setState({text: str})
     if (this.timeout) clearTimeout(this.timeout)
     this.timeout = setTimeout(callback, 300)
   }
+
 
   render() {
 
