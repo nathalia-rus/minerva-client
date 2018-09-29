@@ -21,9 +21,7 @@ class Home extends Component {
            <img className='Home_wrapper_img' alt='OpenBook' src={openBook} />
           </div>
         </div>
-
       )
-
   }
 }
 

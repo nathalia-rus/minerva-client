@@ -16,7 +16,7 @@ https.get(API, (res) => {
    res.on('data', (chunk) => rawData += chunk);
    res.on('end', () => {
     const response = goodReadsJSONResponse.convertToJson(rawData);
-   // console.log(response.book.title, response.book.average_rating, response.book.ratings_count);
+   console.log( response, response.book.title, response.book.average_rating, response.book.ratings_count);
    return response;
    
   });
