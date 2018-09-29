@@ -23,4 +23,3 @@ https.get(API, (res) => {
 }).on('error', (e) => {
   console.log(`Got error: ${e.message}`);
 });
-
