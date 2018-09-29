@@ -7,6 +7,7 @@ import home from '../assets/startup.svg';
 import scan from '../assets/qr-code.svg';
 import books from '../assets/menu-book.svg';
 import logout from '../assets/logout.svg';
+import ratings from '../assets/ratings.svg'
 
 import MenuProfile from "./MenuProfile";
 
@@ -44,6 +45,12 @@ class Menu extends Component {
             <Link to='/library'>
             <img className='flyoutMenu_li_img' alt='Books' src={books} />
             <div className='flyoutMenu_li_name'>Library</div>
+            </Link>
+          </li>
+          <li className='flyoutMenu_li'>
+            <Link to='/rate'>
+              <img className ='flyoutMenu_li_img' alt='Books' src={ratings} />
+              <div className='flyoutMenu_li_name'> Ratings </div>
             </Link>
           </li>
           <li className='flyoutMenu_li'>
