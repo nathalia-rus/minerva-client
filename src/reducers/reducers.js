@@ -3,7 +3,7 @@ import authReducer, * as fromAuth from './authReducer';
 import {
   ON_DETECTED,
   ON_SEARCH,
-  LOG_IN,
+  LOG_IN_GOOGLE,
   ADD_BOOK
 } from '../actions/actionTypes'
 
@@ -35,7 +35,7 @@ const onDetectedReducer = (state = defaultState, action) => {
 
 const userReducer = (state = defaultUserState, action) => {
   switch(action.type) {
-    case LOG_IN:
+    case LOG_IN_GOOGLE:
       return {
         ...state,
         user: action.user
@@ -65,6 +65,5 @@ export default combineReducers({
 });
 
 export const isAuthenticated = state => {
-  console.log(state);
   return fromAuth.isAuthenticated(state.auth);
 }

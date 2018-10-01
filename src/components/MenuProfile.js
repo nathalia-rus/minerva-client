@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { logIn } from '../actions/actions';
+import { logInGoogle } from '../actions/actions';
 
 import profileBase from '../assets/man.svg';
 
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logIn: (user) => dispatch(logIn(user))
+  logIn: (user) => dispatch(logInGoogle(user))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(MenuProfile);

@@ -1,14 +1,7 @@
-// import jwtDecode from 'jwt-decode';
-
-//
-// export function isRefreshTokenExpired(state) {
-//     if (state.refresh && state.refresh.exp) {
-//         return 1000 * state.refresh.exp - (new Date()).getTime() < 5000;
-//     }
-//     return true;
-// }
+import * as auth from '../actions/actionTypes';
 
 const initialState = {
+    loggedIn: false,
     access: undefined,
     refresh: undefined,
     errors: {},
@@ -16,6 +9,16 @@ const initialState = {
 
 export default (state=initialState,action) => {
   switch(action.type) {
+    case auth.LOG_IN_STANDARD:
+      return {
+        ...state,
+        loggedIn: true,
+      }
+    case auth.LOG_OUT_STANDARD:
+      return {
+        ...state,
+        loggedIn: false,
+      }
     default:
       return state;
   }
@@ -23,5 +26,5 @@ export default (state=initialState,action) => {
 
 
 export function isAuthenticated(state) {
-  return true;
+  return state.loggedIn;
 }
