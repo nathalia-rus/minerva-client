@@ -6,6 +6,7 @@ import Scanner from './Scanner';
 import history from '../history';
 import { onDetectedReducer } from '../actions/actions';
 
+
 class ScannerDashboard extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +16,6 @@ class ScannerDashboard extends Component {
     }
   }
 
-  // Receives isbn and sends to API.
-  // Scanner — we are sending it in the props.
   executeFetch = (isbn) => {
     const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
     const apiKey = 'AIzaSyAPODoh7pbgRTLTAWlaQkFBbqbTadJsz1U'

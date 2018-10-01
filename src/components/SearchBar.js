@@ -9,6 +9,7 @@ import MenuContainer from './MenuContainer';
 import { onSearch } from '../actions/actions';
 import history from '../history';
 
+
 class SearchBar extends Component {
   API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
   API_KEY = 'AIzaSyAPODoh7pbgRTLTAWlaQkFBbqbTadJsz1U'
@@ -32,6 +33,7 @@ class SearchBar extends Component {
     if (this.timeout) clearTimeout(this.timeout)
     this.timeout = setTimeout(callback, 300)
   }
+
 
   render() {
 
