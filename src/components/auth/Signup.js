@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { logInGoogle } from '../../actions/actions';
-import { logInStandard } from '../../actions/authActions';
+import { logInStandard, registerUser } from '../../actions/authActions';
 import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router-dom';
 import '../../components_sass/Menu.sass';
@@ -38,7 +38,8 @@ class Signup extends Component {
   onSubmit = (event) => {
         event.preventDefault();
         console.log(this.state);
-    }
+        this.props.registerUser(this.state);
+  }
 
   render() {
       return (
@@ -105,7 +106,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   logInStandard: () => dispatch(logInStandard()),
-  logInGoogle: (user) => dispatch(logInGoogle(user))
+  logInGoogle: (user) => dispatch(logInGoogle(user)),
+  registerUser: (payload) => dispatch(registerUser(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
