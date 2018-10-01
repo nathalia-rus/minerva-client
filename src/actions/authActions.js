@@ -17,8 +17,6 @@ export const logOutStandard = () => ({
 })
 
 export const registerUser = (payload) => {
-  console.log('in registerUser');
-  console.log(payload);
   return {
     [RSAA]: {
       endpoint: '/api/auth-user',
@@ -27,5 +25,5 @@ export const registerUser = (payload) => {
       headers: {'Content-Type':'application/json'},
       types: [  REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE ]
     }
-  }
+  };
 }

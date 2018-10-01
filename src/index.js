@@ -6,11 +6,16 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/reducers';
+import { apiMiddleware } from 'redux-api-middleware';
 
-let store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&
-  window.__REDUX_DEVTOOLS_EXTENSION__());
+
+let store = createStore(
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(apiMiddleware)
+);
 
 
   ReactDOM.render(
