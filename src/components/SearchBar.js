@@ -9,16 +9,10 @@ import MenuContainer from './MenuContainer';
 import { onSearch } from '../redux/actions';
 import history from '../history';
 
-// const https = require('https');
-const goodReadsJSONResponse = require('../API/GR_JSON_response');
-
-// GOODREADS API INFO URL : https://www.goodreads.com/api/index#book.title
 
 class SearchBar extends Component {
- 
- // API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
-  API_key = 'eCuCTJhM3hFcUN5sdlYA6g'
-  title = 'narnia'
+  API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
+  API_KEY = 'AIzaSyAPODoh7pbgRTLTAWlaQkFBbqbTadJsz1U'
 
   state = {
     text: ''
@@ -26,29 +20,13 @@ class SearchBar extends Component {
 
   performSearch = () => {
     if (this.state.text.length) {
-  // const API = `${this.BASE_URL}?key=${this.API_key}&title=${this.state.text.replace(' ', '+')}`;
-      const API = `https://www.goodreads.com/book/title.xml?key=${this.API_key}&title=${this.state.text.replace(' ', '+')}`; 
-      fetch(API).then(res => {
-        res.setEncoding('utf8');
-        let rawData = '';
-        res.on('data', (chunk) => rawData += chunk)
-        res.on('end', () => {
-          const response = goodReadsJSONResponse.convertToJson(rawData);
-          console.log(response.title);
-          return this.props.saveResults[response.title]
-        });
-      }).catch(e => {
-        console.log(`Got error: ${e.message}`);
-      })
+      fetch(`${this.API_URL}${this.state.text.replace(' ', '+')}&maxResults=40&key=${this.API_KEY}`)
+        .then(res => res.json())
+        .then(res => this.props.saveResults(res.items))
+    } else {
+      this.props.saveResults([])
     }
   }
-  // console.log(response.book.title, response.book.average_rating, response.book.ratings_count);
-
-  //     .then(res => this.props.saveResults(res.items))
-  //   } else {
-  //     this.props.saveResults([])
-  //   }
-  // }
 
   debounce = (callback, str) => {
     this.setState({text: str})

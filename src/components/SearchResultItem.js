@@ -8,54 +8,23 @@ import history from '../history';
 
 import defaultBook from '../assets/default-book.png';
 
-const https = require('https');
-const goodReadsJSONResponse = require('../API/GR_JSON_response');
-
-
 class SearchResultItem extends Component {
 
-  API_key = 'eCuCTJhM3hFcUN5sdlYA6g'
-
-  // Fetching single book from Search Bar
-
   itemFetch = (isbn) => {
-    if (this.state.text.length) {
-      const API = `https://www.goodreads.com/book/isbn/${isbn}?key=${this.API_key}`;
-      https.get(API, (res) => {
-        res.setEncoding('utf8');
-        let rawData = '';
-        res.on('data', (chunk) => rawData += chunk)
-        res.on('end', () => {
-          const response = goodReadsJSONResponse.convertToJson(rawData);
-          // console.log(response.book.title, response.book.average_rating, response.book.ratings_count);
-          console.log(response.title);
-          this.props.onDetectedReducer(response.title);
-           history.push('/result')
-        });
-      }).on('error', (e) => {
-        console.log(`Got error: ${e.message}`);
+    const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
+    const apiKey = 'AIzaSyAPODoh7pbgRTLTAWlaQkFBbqbTadJsz1U'
+    const isbnNum = this.props.industryIdentifiers[1].identifier
+    fetch(BASE_URL + isbnNum + '&key=' + apiKey)
+      .then(results => results.json())
+      .then(results => {
+        if (results.totalItems) {
+          this.props.onDetectedReducer(results.items[0])
+          history.push('/result')
+        }
       })
-    }
   }
 
-
-  // itemFetch = (isbn) => {
-  //   const BASE_URL = 'https://www.goodreads.com/book/title.FORMAT'
-  //  // const BASE_URL= 'https://www.googleapis.com/books/v1/volumes?q=isbn:'
-  //   const apiKey = 'eCuCTJhM3hFcUN5sdlYA6g'
-  //   const isbnNum = this.props.industryIdentifiers[1].identifier
-  //   fetch(BASE_URL + isbnNum + '&key=' + apiKey)
-  //     .then(results => results.json())
-  //     .then(results => {
-  //       if(results.totalItems) {
-  //         this.props.onDetectedReducer(results.items[0])
-  //         history.push('/result')
-  //       }
-  //     })
-  // }
-
   render() {
-    // console.log(this.props)
     return (
       <div className='SearchResult_wrapper' onClick={this.itemFetch}>
         <div className='SearchResult_img_wrapper'>
@@ -96,5 +65,3 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(SearchResultItem);
-
-// export default SearchResultItem;

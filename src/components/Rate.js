@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import SearchBar from './SearchBar';
 import purchased from '../assets/purchased.png';
 
-
 class Rate extends Component {
 
   // renderPurchase = (list) => {
