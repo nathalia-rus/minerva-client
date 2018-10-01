@@ -11,6 +11,15 @@ import pileBooks from '../../assets/pile-books.svg';
 
 class Signup extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+    };
+  }
+
   loginGoogle = ({ profileObj }) => {
     fetch('http://localhost:3001/login/google', {
       method: 'POST',
@@ -25,6 +34,11 @@ class Signup extends Component {
       })
       .catch(err => console.error(err))
   }
+
+  onSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state);
+    }
 
   render() {
       return (
@@ -54,18 +68,18 @@ class Signup extends Component {
           <div className='Signup_signup_text'>
             or
           </div>
-          <div className='Signup_signup_form'>
+          <form className='Signup_signup_form' action="" onSubmit={this.onSubmit}>
             <div className='Signup_signup_inputs'>
               <div>
-                <input className='Signup_signup_input' type="text" placeholder="Full Name"/>
-                <input className='Signup_signup_input' type="text" placeholder="Email Address"/>
-                <input className='Signup_signup_input' type="text" placeholder="Password"/>
+                <input className='Signup_signup_input' type="text" placeholder="Full Name" onChange={event => this.setState({ name: event.target.value })}/>
+                <input className='Signup_signup_input' type="text" placeholder="Email Address" onChange={event => this.setState({ email: event.target.value })}/>
+                <input className='Signup_signup_input' type="text" placeholder="Password" onChange={event => this.setState({ password: event.target.value })}/>
               </div>
             </div>
-            <button className='Signup_signup_button' onClick={this.props.logInStandard}>
+            <button className='Signup_signup_button' type="submit">
               <strong>Sign Up</strong>
             </button>
-          </div>
+          </form>
           <div className='Signup_to_login'>
             <div>
               <div className='Signup_signup_text'>
