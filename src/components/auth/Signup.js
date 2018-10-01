@@ -36,8 +36,9 @@ class Signup extends Component {
   }
 
   onSubmit = (event) => {
-        event.preventDefault();
-        this.props.registerUser(this.state);
+    event.preventDefault();
+    this.props.registerUser(this.state);
+    this.props.logInStandard();      
   }
 
   render() {
