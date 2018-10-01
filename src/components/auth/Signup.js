@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { logIn } from '../../redux/actions';
+import { logInGoogle } from '../../actions/actions';
+import { logInStandard } from '../../actions/authActions';
 import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router-dom';
 import '../../components_sass/Menu.sass';
@@ -20,7 +21,7 @@ class Signup extends Component {
     })
       .then(res => res.json())
       .then(res => {
-        this.props.logIn(res)
+        this.props.logInGoogle(res)
       })
       .catch(err => console.error(err))
   }
@@ -31,7 +32,7 @@ class Signup extends Component {
           <div className='Signup_signup_title'>minerva</div>
           <img className='Signup_wrapper_signup_img' alt='Pile of books' src={pileBooks} />
           <div className='Signup_socialmedia_signup_buttons'>
-            <div className='Signup_signup_wrapper_googlebutton'>
+            <div className='Signup_signup_wrapper_googlebutton' onClick={this.props.logInStandard}>
               <GoogleLogin
                 className ='Signup_signup_googlebutton'
                 clientId='673352715028-kbn3igi1c3sg2apmbf1vos7stdv8n406.apps.googleusercontent.com'
@@ -40,7 +41,7 @@ class Signup extends Component {
                 onFailure={console.error}
               />
             </div>
-            <div className='Signup_signup_wrapper_facebookbutton'>
+            <div className='Signup_signup_wrapper_facebookbutton' onClick={this.props.logInStandard}>
               <GoogleLogin
                 className ='Signup_signup_facebookbutton'
                 clientId='673352715028-kbn3igi1c3sg2apmbf1vos7stdv8n406.apps.googleusercontent.com'
@@ -61,7 +62,7 @@ class Signup extends Component {
                 <input className='Signup_signup_input' type="text" placeholder="Password"/>
               </div>
             </div>
-            <button className='Signup_signup_button'>
+            <button className='Signup_signup_button' onClick={this.props.logInStandard}>
               <strong>Sign Up</strong>
             </button>
           </div>
@@ -89,7 +90,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logIn: (user) => dispatch(logIn(user))
+  logInStandard: () => dispatch(logInStandard()),
+  logInGoogle: (user) => dispatch(logInGoogle(user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

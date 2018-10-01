@@ -1,7 +1,7 @@
 import {
   ON_DETECTED,
   ON_SEARCH,
-  LOG_IN,
+  LOG_IN_GOOGLE,
   ADD_BOOK
 } from './actionTypes'
 
@@ -15,8 +15,8 @@ export const onSearch = (list) => ({
   list
 })
 
-export const logIn = (user) => ({
-  type: LOG_IN,
+export const logInGoogle = (user) => ({
+  type: LOG_IN_GOOGLE,
   user
 })
 

@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
+import authReducer, * as fromAuth from './authReducer';
 import {
   ON_DETECTED,
   ON_SEARCH,
-  LOG_IN,
+  LOG_IN_GOOGLE,
   ADD_BOOK
-} from './actionTypes'
+} from '../actions/actionTypes'
 
 const defaultState = {
   results: {},
@@ -34,7 +35,7 @@ const onDetectedReducer = (state = defaultState, action) => {
 
 const userReducer = (state = defaultUserState, action) => {
   switch(action.type) {
-    case LOG_IN:
+    case LOG_IN_GOOGLE:
       return {
         ...state,
         user: action.user
@@ -56,9 +57,13 @@ const userReducer = (state = defaultUserState, action) => {
 }
 
 // Combining all reducers.
-const reducers = combineReducers({
+export default combineReducers({
+  auth: authReducer,
+
   onDetectedReducer,
   userReducer
 });
 
-export default reducers;
+export const isAuthenticated = state => {
+  return fromAuth.isAuthenticated(state.auth);
+}

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SearchBar from './SearchBar';
 import Scanner from './Scanner';
 import history from '../history';
-import { onDetectedReducer } from '../redux/actions';
+import { onDetectedReducer } from '../actions/actions';
 
 
 class ScannerDashboard extends Component {

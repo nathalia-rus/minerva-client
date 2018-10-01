@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as reducers from './reducers/reducers';
 
 import history from './history';
 import './Root.sass';
@@ -8,7 +9,6 @@ import './Root.sass';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ScannerDashboard from './components/ScannerDashboard';
-import Result from './components/Result';
 import Home from './components/Home';
 import SearchBarResults from './components/SearchBarResults';
 import LibraryDashboard from './components/LibraryDashboard';
@@ -24,7 +24,7 @@ class Root extends Component {
 
   render() {
 
-    const isAuthenticated = true;
+    const { isAuthenticated } = this.props;
 
     return (
       <Router history={history}>
@@ -48,7 +48,11 @@ class Root extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.userReducer.user
+  user: state.userReducer.user,
+  isAuthenticated: reducers.isAuthenticated(state)
 })
 
-export default connect (mapStateToProps, null)(Root);
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect (mapStateToProps, mapDispatchToProps)(Root);

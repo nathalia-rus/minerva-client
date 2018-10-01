@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-// import { GoogleLogout } from 'react-google-login';
-
+import { connect } from 'react-redux';
+import { logOutStandard } from '../actions/authActions';
 import '../components_sass/MenuProfile.sass';
 import home from '../assets/startup.svg';
 import scan from '../assets/qr-code.svg';
@@ -37,17 +37,18 @@ class Menu extends Component {
           </li>
           <li className='flyoutMenu_li'>
             <Link to='/scannerdashboard'>
-            <img className='flyoutMenu_li_img' alt='Scan' src={scan} />
-            <div className='flyoutMenu_li_name'>Scan</div>
+              <img className='flyoutMenu_li_img' alt='Scan' src={scan} />
+              <div className='flyoutMenu_li_name'>Scan</div>
             </Link>
           </li>
           <li className='flyoutMenu_li'>
             <Link to='/library'>
-            <img className='flyoutMenu_li_img' alt='Books' src={books} />
-            <div className='flyoutMenu_li_name'>Library</div>
+              <img className='flyoutMenu_li_img' alt='Books' src={books} />
+              <div className='flyoutMenu_li_name'>Library</div>
             </Link>
           </li>
           <li className='flyoutMenu_li'>
+<<<<<<< HEAD
             <Link to='/rate'>
               <img className ='flyoutMenu_li_img' alt='Books' src={ratings} />
               <div className='flyoutMenu_li_name'> Ratings </div>
@@ -57,19 +58,25 @@ class Menu extends Component {
             <Link to='/login'>
             <img className='flyoutMenu_li_img' alt='Books' src={logout} />
             <div className='flyoutMenu_li_name'>Logout</div>
+=======
+            <Link to='/login' onClick={this.props.logOutStandard}>
+              <img className='flyoutMenu_li_img' alt='Books' src={logout} />
+              <div className='flyoutMenu_li_name'>Logout</div>
+>>>>>>> f19d8be9bfbadcfd63bcddd13272e0c140c09c77
             </Link>
           </li>
         </div>
-{
-        //   <GoogleLogout
-        // buttonText="Logout"
-        // onLogoutSuccess={console.log(1)}
-        // />
-
-}
       </div>
     )
   }
 }
 
-export default Menu;
+
+const mapStateToProps = (state) => ({
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  logOutStandard: () => dispatch(logOutStandard()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

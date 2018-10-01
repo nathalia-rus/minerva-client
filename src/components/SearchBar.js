@@ -6,7 +6,7 @@ import '../components_sass/Home.sass';
 import '../components_sass/SearchBar.sass';
 
 import MenuContainer from './MenuContainer';
-import { onSearch } from '../redux/actions';
+import { onSearch } from '../actions/actions';
 import history from '../history';
 
 

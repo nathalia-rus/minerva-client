@@ -3,7 +3,7 @@ import StarRatings from 'react-star-ratings';
 import '../components_sass/SearchBarResultItem.sass';
 
 import { connect } from 'react-redux';
-import { onDetectedReducer } from '../redux/actions';
+import { onDetectedReducer } from '../actions/actions';
 import history from '../history';
 
 import defaultBook from '../assets/default-book.png';

@@ -3,7 +3,7 @@ import StarRatings from 'react-star-ratings';
 import '../components_sass/Result.sass';
 
 import { connect } from 'react-redux';
-import { addLibrary } from '../redux/actions';
+import { addLibrary } from '../actions/actions';
 
 
 import web from '../assets/spider-web.svg';
