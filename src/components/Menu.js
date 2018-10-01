@@ -18,7 +18,7 @@ class Menu extends Component {
     if(this.props.menuVisibility) {
       visibility = 'show';
     }
-
+    
     return(
       <div id='flyoutMenu'
           onMouseDown={this.props.handleMouseDown}
@@ -48,21 +48,15 @@ class Menu extends Component {
             </Link>
           </li>
           <li className='flyoutMenu_li'>
-<<<<<<< HEAD
             <Link to='/rate'>
               <img className ='flyoutMenu_li_img' alt='Books' src={ratings} />
               <div className='flyoutMenu_li_name'> Ratings </div>
             </Link>
           </li>
           <li className='flyoutMenu_li'>
-            <Link to='/login'>
-            <img className='flyoutMenu_li_img' alt='Books' src={logout} />
-            <div className='flyoutMenu_li_name'>Logout</div>
-=======
             <Link to='/login' onClick={this.props.logOutStandard}>
               <img className='flyoutMenu_li_img' alt='Books' src={logout} />
               <div className='flyoutMenu_li_name'>Logout</div>
->>>>>>> f19d8be9bfbadcfd63bcddd13272e0c140c09c77
             </Link>
           </li>
         </div>

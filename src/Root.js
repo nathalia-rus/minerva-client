@@ -15,7 +15,6 @@ import LibraryDashboard from './components/LibraryDashboard';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Rate from './components/Rate'
 
-
 class Root extends Component {
 
   showSettings (event) {
