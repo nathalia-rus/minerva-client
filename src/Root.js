@@ -30,7 +30,7 @@ class Root extends Component {
         <div className='App_loginUser'>
           <div>
             <Switch>
-              <Redirect exact path='/' to={isAuthenticated ? '/home' : '/login'}></Redirect>
+              <Redirect exact path='/' to={isAuthenticated ? '/home' : '/signup'}></Redirect>
               <PrivateRoute exact path="/login" component={Login} display={!isAuthenticated} redirect='/home' />
               <PrivateRoute exact path="/signup" component={Signup} display={!isAuthenticated} redirect='/home' />
               <PrivateRoute exact path="/home" component={Home} display={isAuthenticated} redirect='/login' />
