@@ -19,7 +19,7 @@ export const logOutStandard = () => ({
 export const registerUser = (payload) => {
   return {
     [RSAA]: {
-      endpoint: 'http://localhost:3001/auth-user',
+      endpoint: 'http://localhost:3001/signup',
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {'Content-Type':'application/json'},

@@ -14,7 +14,7 @@ class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
+      username: '',
       email: '',
       password: '',
     };
@@ -38,7 +38,7 @@ class Signup extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.props.registerUser(this.state);
-    this.props.logInStandard();      
+    this.props.logInStandard();
   }
 
   render() {
@@ -72,7 +72,7 @@ class Signup extends Component {
           <form className='Signup_signup_form' action="" onSubmit={this.onSubmit}>
             <div className='Signup_signup_inputs'>
               <div>
-                <input className='Signup_signup_input' type="text" placeholder="Full Name" onChange={event => this.setState({ name: event.target.value })}/>
+                <input className='Signup_signup_input' type="text" placeholder="Full Name" onChange={event => this.setState({ username: event.target.value })}/>
                 <input className='Signup_signup_input' type="text" placeholder="Email Address" onChange={event => this.setState({ email: event.target.value })}/>
                 <input className='Signup_signup_input' type="text" placeholder="Password" onChange={event => this.setState({ password: event.target.value })}/>
               </div>
