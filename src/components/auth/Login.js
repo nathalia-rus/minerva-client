@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInGoogle } from '../../actions/actions';
-import { logInStandard } from '../../actions/authActions';
+// import { logInStandard } from '../../actions/authActions';
 import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router-dom';
 import '../../components_sass/Menu.sass';
@@ -61,7 +61,7 @@ class Login extends Component {
                 <input className='Login_login_input' type="text" placeholder="Password"/>
               </div>
             </div>
-              <button className='Login_login_button' onClick={this.props.logInStandard}>
+              <button className='Login_login_button'>
                     <strong>Log In</strong>
               </button>
           </div>
@@ -89,7 +89,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logInStandard: () => dispatch(logInStandard()),
+  // logInStandard: () => dispatch(logInStandard()),
   logInGoogle: (user) => dispatch(logInGoogle(user))
 })
 

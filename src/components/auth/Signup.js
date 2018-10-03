@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { logInGoogle } from '../../actions/actions';
-import { logInStandard, registerUser } from '../../actions/authActions';
+import { registerUser } from '../../actions/authActions';
 import GoogleLogin from 'react-google-login';
+import SignupConfirmation from './SignupConfirmation';
 import { Link } from 'react-router-dom';
 import '../../components_sass/Menu.sass';
 import '../../components_sass/Signup.sass';
@@ -38,10 +39,15 @@ class Signup extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.props.registerUser(this.state);
-    this.props.logInStandard();
   }
 
   render() {
+      const {loading, finished} = this.props;
+
+      if (!loading && finished) {
+          return <SignupConfirmation />
+      }
+
       return (
         <div className='Signup_signup_wrapper'>
           <div className='Signup_signup_title'>minerva</div>
@@ -101,11 +107,13 @@ class Signup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.userReducer.user
+  user: state.userReducer.user,
+  loading: state.signupPage.loading,
+  finished: state.signupPage.finished,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logInStandard: () => dispatch(logInStandard()),
+  // logInStandard: () => dispatch(logInStandard()),
   logInGoogle: (user) => dispatch(logInGoogle(user)),
   registerUser: (payload) => dispatch(registerUser(payload))
 })

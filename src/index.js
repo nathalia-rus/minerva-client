@@ -4,18 +4,27 @@ import './index.sass';
 import Root from './Root';
 import registerServiceWorker from './registerServiceWorker';
 
-
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/reducers';
 import { apiMiddleware } from 'redux-api-middleware';
+import { loadState, saveState } from './localStorage'
 
-
-let store = createStore(
+const persistedState = loadState();
+const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  persistedState,
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(apiMiddleware)
 );
+
+store.subscribe(() => {
+  saveState({
+    auth: {
+      access: store.getState().auth.access
+    }
+  });
+});
 
 
   ReactDOM.render(

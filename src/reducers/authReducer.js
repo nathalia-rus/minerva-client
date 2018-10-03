@@ -1,7 +1,6 @@
 import * as auth from '../actions/actionTypes';
 
 const initialState = {
-    loggedIn: false,
     access: undefined,
     refresh: undefined,
     errors: {},
@@ -9,15 +8,10 @@ const initialState = {
 
 export default (state=initialState,action) => {
   switch(action.type) {
-    case auth.LOG_IN_STANDARD:
+    case auth.REGISTER_USER_SUCCESS:
       return {
         ...state,
-        loggedIn: true,
-      }
-    case auth.LOG_OUT_STANDARD:
-      return {
-        ...state,
-        loggedIn: false,
+        access: action.payload.auth_token,
       }
     default:
       return state;

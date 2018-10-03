@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import authReducer, * as fromAuth from './authReducer';
+import signupPageReducer from './page/signupPageReducer';
 import {
   ON_DETECTED,
   ON_SEARCH,
@@ -59,7 +60,7 @@ const userReducer = (state = defaultUserState, action) => {
 // Combining all reducers.
 export default combineReducers({
   auth: authReducer,
-
+  signupPage: signupPageReducer,
   onDetectedReducer,
   userReducer
 });

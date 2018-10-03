@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logOutStandard } from '../actions/authActions';
+// import { logOutStandard } from '../actions/authActions';
 import '../components_sass/MenuProfile.sass';
 import home from '../assets/startup.svg';
 import scan from '../assets/qr-code.svg';
@@ -18,7 +18,7 @@ class Menu extends Component {
     if(this.props.menuVisibility) {
       visibility = 'show';
     }
-    
+
     return(
       <div id='flyoutMenu'
           onMouseDown={this.props.handleMouseDown}
@@ -54,7 +54,7 @@ class Menu extends Component {
             </Link>
           </li>
           <li className='flyoutMenu_li'>
-            <Link to='/login' onClick={this.props.logOutStandard}>
+            <Link to='/login'>
               <img className='flyoutMenu_li_img' alt='Books' src={logout} />
               <div className='flyoutMenu_li_name'>Logout</div>
             </Link>
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logOutStandard: () => dispatch(logOutStandard()),
+  // logOutStandard: () => dispatch(logOutStandard()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);
