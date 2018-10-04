@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import * as auth from '../actions/actionTypes';
 
 const initialState = {
@@ -13,6 +14,21 @@ export default (state=initialState,action) => {
         ...state,
         access: action.payload.auth_token,
       }
+    case auth.LOGIN_REQUEST:
+      console.log('LOGIN_REQUEST');
+      return state;
+    case auth.LOGIN_SUCCESS:
+      return {
+          access: {
+              token: action.payload.access,
+              ...jwtDecode(action.payload.access)
+          },
+          refresh: {
+              token: action.payload.refresh,
+              ...jwtDecode(action.payload.refresh)
+          },
+          errors: {}
+      };
     default:
       return state;
   }

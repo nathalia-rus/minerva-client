@@ -1,20 +1,13 @@
 import { RSAA } from 'redux-api-middleware';
 import {
-  // LOG_IN_STANDARD,
-  // LOG_OUT_STANDARD,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
-  REGISTER_USER_FAILURE
+  REGISTER_USER_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
 } from './actionTypes'
 
-// 
-// export const logInStandard = () => ({
-//   type: LOG_IN_STANDARD,
-// })
-//
-// export const logOutStandard = () => ({
-//   type: LOG_OUT_STANDARD,
-// })
 
 export const registerUser = (payload) => {
   return {
@@ -27,3 +20,14 @@ export const registerUser = (payload) => {
     }
   };
 }
+
+
+export const logInStandard = (email, password) => ({
+    [RSAA]: {
+        endpoint: 'http://localhost:3001/login',
+        method: 'POST',
+        body: JSON.stringify({email, password}),
+        headers: { 'Content-Type': 'application/json' },
+        types: [ LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE ]
+    }
+});

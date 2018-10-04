@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInGoogle } from '../../actions/actions';
-// import { logInStandard } from '../../actions/authActions';
+import { logInStandard } from '../../actions/authActions';
 import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router-dom';
 import '../../components_sass/Menu.sass';
@@ -10,6 +10,14 @@ import pileBooks from '../../assets/pile-books.svg';
 
 
 class Login extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
 
   loginGoogle = ({ profileObj }) => {
     fetch('http://localhost:3001/login/google', {
@@ -24,6 +32,12 @@ class Login extends Component {
         this.props.logInGoogle(res)
       })
       .catch(err => console.error(err))
+  }
+
+  onSubmit = (event) => {
+    console.log('here');
+    event.preventDefault();
+    this.props.logInStandard(this.state);
   }
 
   render() {
@@ -54,17 +68,17 @@ class Login extends Component {
           <div className='Login_login_text'>
             or
           </div>
-          <div className='Login_login_form'>
+          <form className='Login_login_form' action="" onSubmit={this.onSubmit}>
             <div className='Login_login_inputs'>
               <div>
-                <input className='Login_login_input' type="text" placeholder="Email Address"/>
-                <input className='Login_login_input' type="text" placeholder="Password"/>
+                <input className='Login_login_input' type="text" placeholder="Email Address" onChange={event => this.setState({ email: event.target.email })}/>
+                <input className='Login_login_input' type="text" placeholder="Password" onChange={event => this.setState({ password: event.target.password })}/>
               </div>
             </div>
-              <button className='Login_login_button'>
-                    <strong>Log In</strong>
-              </button>
-          </div>
+            <button className='Login_login_button' type="submit">
+              <strong>Log In</strong>
+            </button>
+          </form>
           <div className='Login_to_login'>
             <div>
               <div className='Login_login_text'>
@@ -89,7 +103,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // logInStandard: () => dispatch(logInStandard()),
+  logInStandard: () => dispatch(logInStandard()),
   logInGoogle: (user) => dispatch(logInGoogle(user))
 })
 

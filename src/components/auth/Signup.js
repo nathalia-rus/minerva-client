@@ -113,7 +113,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // logInStandard: () => dispatch(logInStandard()),
   logInGoogle: (user) => dispatch(logInGoogle(user)),
   registerUser: (payload) => dispatch(registerUser(payload))
 })

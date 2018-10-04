@@ -19,11 +19,13 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  saveState({
-    auth: {
-      access: store.getState().auth.access
-    }
-  });
+  saveState(store.getState());
+  // console.log(store.getState());
+  // saveState({
+  //   auth: {
+  //     access: store.getState().auth.access
+  //   }
+  // });
 });
 
 
