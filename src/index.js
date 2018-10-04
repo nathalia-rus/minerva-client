@@ -8,18 +8,18 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/reducers';
 import { apiMiddleware } from 'redux-api-middleware';
-import { loadState, saveState } from './localStorage'
+// import { loadState, saveState } from './localStorage'
 
-const persistedState = loadState();
+// const persistedState = loadState();
 const store = createStore(
   reducers,
-  persistedState,
+  // persistedState,
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(apiMiddleware)
 );
 
 store.subscribe(() => {
-  saveState(store.getState());
+  // saveState(store.getState());
   // console.log(store.getState());
   // saveState({
   //   auth: {
@@ -29,10 +29,10 @@ store.subscribe(() => {
 });
 
 
-  ReactDOM.render(
-    <Provider store={store}>
-        <Root/>
-    </Provider>,
-    document.getElementById('root')
-  );
-  registerServiceWorker();
+ReactDOM.render(
+  <Provider store={store}>
+      <Root/>
+  </Provider>,
+  document.getElementById('root')
+);
+registerServiceWorker();

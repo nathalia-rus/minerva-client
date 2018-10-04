@@ -21,6 +21,10 @@ export const registerUser = (payload) => {
   };
 }
 
+export const dismissSignupConfirmation = () => ({
+   type: [ REGISTER_USER_FAILURE ]
+})
+
 
 export const logInStandard = (email, password) => ({
     [RSAA]: {

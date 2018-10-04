@@ -10,9 +10,10 @@ const initialState = {
 export default (state=initialState,action) => {
   switch(action.type) {
     case auth.REGISTER_USER_SUCCESS:
+      console.log(action);
       return {
         ...state,
-        access: action.payload.auth_token,
+        errors: {},
       }
     case auth.LOGIN_REQUEST:
       console.log('LOGIN_REQUEST');
